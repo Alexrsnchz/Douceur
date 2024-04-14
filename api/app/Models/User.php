@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -42,6 +43,15 @@ class User extends Authenticatable
     public function productsLike(): BelongsToMany
     {
         return $this -> belongsToMany(Product::class);
+    }
+
+    /**
+     * Relación 1:M con Address.
+     * Un usuario puede tener una sola dirección.
+     */
+    public function address(): BelongsTo
+    {
+        return $this -> belongsTo(Address::class);
     }
 
     /**

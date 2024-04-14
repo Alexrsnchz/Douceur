@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,19 @@ class ProductFactory extends Factory
      */
     public function definition(): array
     {
+        fake() -> addProvider(new \Mmo\Faker\PicsumProvider(fake()));
+
+        $stock = fake() -> numberBetween(0, 100);
+        $availability = ($stock == 0) ? 'Agotado' : 'Disponible';
+
         return [
-            //
+            'prodName' => fake() -> unique() -> word(),
+            'description' => fake() -> text(),
+            'price' => fake() -> randomFloat(2, 20, 250),
+            'stock' => $stock,
+            'availability' => $availability,
+            'image' => 'img/'.fake() -> picsum('public/storage/img', 640, 480, false),
+            'category_id' => Category::all() -> random() -> id
         ];
     }
 }
