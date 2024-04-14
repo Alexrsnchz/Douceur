@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -17,9 +18,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'username',
         'password',
+        'email',
+        'address_id',
+        'role'
     ];
 
     /**
@@ -31,6 +34,15 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    /**
+     * Relación N:M con Product.
+     * Un usuario puede dar like a muchos productos.
+     */
+    public function productsLike(): BelongsToMany
+    {
+        return $this -> belongsToMany(Product::class);
+    }
 
     /**
      * Get the attributes that should be cast.
