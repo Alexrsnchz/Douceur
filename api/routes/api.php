@@ -13,10 +13,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+// Rutas API para todo lo relacionado con usuarios.
 Route::apiResource('addresses', AddressController::class);
 Route::apiResource('users', UserController::class);
 Route::apiResource('posts', PostController::class);
 
+// Rutas API para todo lo relacionado con productos.
 Route::apiResource('allergens', AllergenController::class);
 Route::apiResource('categories', CategoryController::class);
 Route::apiResource('products', ProductController::class);
