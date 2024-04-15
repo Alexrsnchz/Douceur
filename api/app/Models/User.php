@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -52,6 +53,15 @@ class User extends Authenticatable
     public function address(): BelongsTo
     {
         return $this -> belongsTo(Address::class);
+    }
+
+    /**
+     * Relación 1:N con Post.
+     * Un usuario puede tener muchos posts.
+     */
+    public function posts(): HasMany
+    {
+        return $this -> hasMany(Post::class);
     }
 
     /**

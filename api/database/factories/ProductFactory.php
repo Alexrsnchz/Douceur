@@ -28,7 +28,7 @@ class ProductFactory extends Factory
             'price' => fake() -> randomFloat(2, 20, 250),
             'stock' => $stock,
             'availability' => $availability,
-            'image' => 'allergens/'.fake() -> picsum('public/storage/allergens', 640, 480, false),
+            'image' => 'products/'.fake() -> picsum('public/storage/products', 640, 480, false),
             'category_id' => Category::all() -> random() -> id
         ];
     }
