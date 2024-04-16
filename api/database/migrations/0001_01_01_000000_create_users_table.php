@@ -16,7 +16,7 @@ return new class extends Migration
             $table -> string('username') -> unique();
             $table -> string('password');
             $table -> string('email') -> unique();
-            $table -> foreignId('address_id') -> constrained();
+            $table -> foreignId('address_id') -> nullable() -> constrained() -> nullOnDelete();
             $table -> enum('role', ['Usuario', 'Admin']);
             $table -> timestamp('email_verified_at') -> nullable();
             $table -> rememberToken();
