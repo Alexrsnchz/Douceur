@@ -27,7 +27,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        // Almacena el usuario creado con los campos válidados.
+        // Almacena el usuario creado con los campos validados.
         $user = User::create($request -> validated());
         // Devuelve el usuario creado en formato JSON.
         return new UserResource($user);
@@ -51,9 +51,9 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, string $id)
     {
         // Almacena el usuario solicitado si encuentra la id especificada
-        // o da un fallo en caso contrario
+        // o da un fallo en caso contrario.
         $user = User::findOrFail($id);
-        // Actualiza el usuario con los campos válidados.
+        // Actualiza el usuario con los campos validados.
         $user -> update($request -> validated());
         
         // Devuelve el usuario actualizado en formato JSON.

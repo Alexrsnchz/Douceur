@@ -27,7 +27,7 @@ class AddressController extends Controller
      */
     public function store(StoreAddressRequest $request)
     {
-        // Almacena la dirección creada con los campos válidados.
+        // Almacena la dirección creada con los campos validados.
         $address = Address::create($request -> validated());
         // Devuelve la dirección creada en formato JSON.
         return new AddressResource($address);
@@ -53,7 +53,7 @@ class AddressController extends Controller
         // Almacena la dirección solicitada si encuentra la id especificada
         // o da un fallo en caso contrario.
         $address = Address::findOrFail($id);
-        // Actualiza la dirección con los campos válidados.
+        // Actualiza la dirección con los campos validados.
         $address -> update($request -> validated());
         
         // Devuelve la dirección actualizada en formato JSON.
