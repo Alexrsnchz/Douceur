@@ -16,7 +16,7 @@ return new class extends Migration
             $table -> string('title') -> unique();
             $table -> text('content');
             $table -> enum('state', ['Publicado', 'Borrador']);
-            $table -> string('postImg') -> nullable() -> default('default.png');
+            $table -> string('postImg') -> nullable() -> default('/storage/default.png');
             $table -> foreignId('user_id') -> constrained() -> onDelete('cascade');
             $table -> timestamps();
         });

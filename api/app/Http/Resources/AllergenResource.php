@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostResource extends JsonResource
+class AllergenResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,9 @@ class PostResource extends JsonResource
     {
         return [
             'id' => $this -> id,
-            'title' => $this -> title,
-            'content' => $this -> content,
-            'state' => $this -> state,
-            'postImg' => $this -> postImg,
-            'user_id' => $this -> user_id
+            'alrgnName' => $this -> alrgnName,
+            'alrgnColor' => $this -> alrgnColor,
+            'alrgnImg' => $this -> alrgnImg
         ];
     }
 }
