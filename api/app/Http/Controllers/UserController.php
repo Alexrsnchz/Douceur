@@ -16,7 +16,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        // Almacena todos los usuarios de la base de datos.
+        // Almacena todos los usuarios obtenidos de la base de datos.
         $users = User::all();
         // Devuelve los usuarios en formato JSON.
         return UserResource::collection($users);
@@ -39,7 +39,7 @@ class UserController extends Controller
     public function show(string $id)
     {
         // Almacena el usuario solicitado si encuentra la id especificada
-        // o da un fallo si no la encuentra.
+        // o da un fallo en caso contrario.
         $user = User::findOrFail($id);
         // Devuelve el usuario solicitado en formato JSON.
         return new UserResource($user);
@@ -51,7 +51,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $request, string $id)
     {
         // Almacena el usuario solicitado si encuentra la id especificada
-        // o da un fallo si no la encuentra.
+        // o da un fallo en caso contrario
         $user = User::findOrFail($id);
         // Actualiza el usuario con los campos válidados.
         $user -> update($request -> validated());
@@ -66,7 +66,7 @@ class UserController extends Controller
     public function destroy(string $id)
     {
         // Almacena el usuario solicitado si encuentra la id especificada
-        // o da un fallo si no la encuentra.
+        // o da un fallo en caso contrario.
         $user = User::findOrFail($id);
         // Elimina el usuario.
         $user -> delete();
