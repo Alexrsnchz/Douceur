@@ -19,15 +19,11 @@ class ProductFactory extends Factory
     {
         fake() -> addProvider(new \Mmo\Faker\PicsumProvider(fake()));
 
-        $stock = fake() -> numberBetween(0, 100);
-        $availability = ($stock == 0) ? 'Agotado' : 'Disponible';
-
         return [
             'prodName' => fake() -> unique() -> word(),
             'description' => fake() -> text(),
             'price' => fake() -> randomFloat(2, 20, 250),
-            'stock' => $stock,
-            'availability' => $availability,
+            'availability' => fake() -> randomElement(['Disponible', 'NoDisponible']),
             'image' => 'products/'.fake() -> picsum('public/storage/products', 640, 480, false),
             'category_id' => Category::all() -> random() -> id
         ];

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
+use App\Http\Resources\ProductResource;
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -12,15 +17,21 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        // Almacena todos los productos obtenidos de la base de datos.
+        $products = Product::all();
+        // Devuelve los productos en formato JSON.
+        return ProductResource::collection($products);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        //
+        // Almacena el producto creado con los campos validados.
+        $product = Product::create($request -> validated());
+        // Devuelve el producto creado en formato JSON.
+        return new ProductResource($product);
     }
 
     /**
@@ -28,15 +39,26 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Almacena el producto solicitado si encuentra la id especificada
+        // o da un fallo en caso contrario.
+        $product = Product::findOrFail($id);
+        // Devuelve el producto solicitado en formato JSON.
+        return new ProductResource($product);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProductRequest $request, string $id)
     {
-        //
+        // Almacena el producto solicitado si encuentra la id especificada
+        // o da un fallo en caso contrario.
+        $product = Product::findOrFail($id);
+        // Actualiza el producto con los campos validados.
+        $product -> update($request -> validated());
+        
+        // Devuelve el producto actualizado en formato JSON.
+        return new ProductResource($product);
     }
 
     /**
@@ -44,6 +66,15 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Almacena el producto solicitado si encuentra la id especificada
+        // o da un fallo en caso contrario.
+        $product = Product::findOrFail($id);
+        // Elimina la imagen del alérgeno.
+        Storage::delete($product -> image);
+        // Elimina el producto.
+        $product -> delete();
+
+        // Devuelve una respuesta vacía con un código de estado 204.
+        return response(null, 204);
     }
 }

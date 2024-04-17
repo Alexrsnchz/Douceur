@@ -16,8 +16,7 @@ return new class extends Migration
             $table -> string('prodName') -> unique();
             $table -> string('description');
             $table -> float('price');
-            $table -> integer('stock');
-            $table -> enum('availability', ['Disponible', 'Agotado']);
+            $table -> enum('availability', ['Disponible', 'NoDisponible']);
             $table -> string('image');
             $table -> foreignId('category_id') -> constrained() -> onDelete('cascade');
             $table -> timestamps();
