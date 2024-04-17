@@ -25,7 +25,7 @@ class StoreAllergenRequest extends FormRequest
     {
         return [
             'alrgnName' => 'required|string|min:3|unique:allergens,alrgnName',
-            'alrgnColor' => 'required|string|starts_with:#',
+            'alrgnColor' => 'required|string|starts_with:#|size:7',
             'alrgnImg' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048'
         ];
     }

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UpdateAllergenRequest extends FormRequest
+class StoreCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class UpdateAllergenRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'alrgnName' => 'required|string|min:3|unique:allergens,alrgnName,'.$this -> id,
-            'alrgnColor' => 'required|string|starts_with:#|size:7',
-            'alrgnImg' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048'
+            'catName' => 'required|string|min:3|unique:categories,catName',
+            'catColor' => 'required|string|starts_with:#|size:7'
         ];
     }
 
