@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import footer_logo from '../../assets/logos/footer_logo.png';
 import facebook_icon from '../../assets/img_socials/facebook_icon.svg';
@@ -34,7 +34,7 @@ function Footer() {
                 <img
                   src={facebook_icon}
                   alt="Enlace a Facebook"
-                  className="w-6 h-auto"
+                  className="w-8 h-auto"
                 />
               </a>
               <a
@@ -45,7 +45,7 @@ function Footer() {
                 <img
                   src={twitter_icon}
                   alt="Enlace a Twitter"
-                  className="w-6 h-auto"
+                  className="w-8 h-auto"
                 />
               </a>
               <a
@@ -56,7 +56,7 @@ function Footer() {
                 <img
                   src={instagram_icon}
                   alt="Enlace a Instagram"
-                  className="w-6 h-auto"
+                  className="w-8 h-auto"
                 />
               </a>
               <a
@@ -67,7 +67,7 @@ function Footer() {
                 <img
                   src={pinterest_icon}
                   alt="Enlace a Pinterest"
-                  className="w-6 h-auto"
+                  className="w-8 h-auto"
                 />
               </a>
             </div>
@@ -84,34 +84,64 @@ function Footer() {
           </span>
           <ul className="text-center">
             <li className="mb-2">
-              <Link to="/" className="hover:text-[#d4a373]">
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? 'text-[#d4a373]' : 'hover:text-[#d4a373]'
+                }
+              >
                 Inicio
-              </Link>
+              </NavLink>
             </li>
             <li className="mb-2">
-              <Link to="/productos" className="hover:text-[#d4a373]">
+              <NavLink
+                to="/productos"
+                className={({ isActive }) =>
+                  isActive ? 'text-[#d4a373]' : 'hover:text-[#d4a373]'
+                }
+              >
                 Productos
-              </Link>
+              </NavLink>
             </li>
             <li className="mb-2">
-              <Link to="/blog" className="hover:text-[#d4a373]">
+              <NavLink
+                to="/blog"
+                className={({ isActive }) =>
+                  isActive ? 'text-[#d4a373]' : 'hover:text-[#d4a373]'
+                }
+              >
                 Blog
-              </Link>
+              </NavLink>
             </li>
             <li className="mb-2">
-              <Link to="/servicios" className="hover:text-[#d4a373]">
+              <NavLink
+                to="/servicios"
+                className={({ isActive }) =>
+                  isActive ? 'text-[#d4a373]' : 'hover:text-[#d4a373]'
+                }
+              >
                 Servicios
-              </Link>
+              </NavLink>
             </li>
             <li className="mb-2">
-              <Link to="/faq" className="hover:text-[#d4a373]">
+              <NavLink
+                to="/faq"
+                className={({ isActive }) =>
+                  isActive ? 'text-[#d4a373]' : 'hover:text-[#d4a373]'
+                }
+              >
                 FAQ
-              </Link>
+              </NavLink>
             </li>
             <li className="mb-2">
-              <Link to="/contactanos" className="hover:text-[#d4a373]">
-                Contáctanos
-              </Link>
+              <NavLink
+                to="/contacto"
+                className={({ isActive }) =>
+                  isActive ? 'text-[#d4a373]' : 'hover:text-[#d4a373]'
+                }
+              >
+                Contacto
+              </NavLink>
             </li>
           </ul>
         </div>

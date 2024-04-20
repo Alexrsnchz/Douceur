@@ -10,7 +10,7 @@ import Productos from './views/Productos';
 import Blog from './views/Blog';
 import Servicios from './views/Servicios';
 import Faq from './views/Faq';
-import Contactanos from './views/Contactanos';
+import Contacto from './views/Contacto';
 import PoliticaPrivacidad from './views/PoliticaPrivacidad';
 import TerminosUso from './views/TerminosUso';
 
@@ -41,8 +41,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: '/contactanos',
-    element: <Contactanos />,
+    path: '/contacto',
+    element: <Contacto />,
     errorElement: <ErrorPage />,
   },
   {

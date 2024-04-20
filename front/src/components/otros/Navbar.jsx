@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import navbar_logo from '../../assets/logos/navbar_logo.png';
 import notification_icon from '../../assets/img_navbar/notification_icon.svg';
 import user_icon from '../../assets/img_navbar/user_icon.svg';
@@ -66,42 +66,66 @@ function Navbar() {
 
       {/* Enlaces (visibles solo en pantallas normales) */}
       <div className="hidden lg:flex items-center space-x-12">
-        <Link
+        <NavLink
           to="/"
-          className="nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]"
+          className={({ isActive }) =>
+            isActive
+              ? 'border-b-2 border-[#d4a373] text-[#d4a373]'
+              : 'nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]'
+          }
         >
           Inicio
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="/productos"
-          className="nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]"
+          className={({ isActive }) =>
+            isActive
+              ? 'border-b-2 border-[#d4a373] text-[#d4a373]'
+              : 'nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]'
+          }
         >
           Productos
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="/blog"
-          className="nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]"
+          className={({ isActive }) =>
+            isActive
+              ? 'border-b-2 border-[#d4a373] text-[#d4a373]'
+              : 'nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]'
+          }
         >
           Blog
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="/servicios"
-          className="nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]"
+          className={({ isActive }) =>
+            isActive
+              ? 'border-b-2 border-[#d4a373] text-[#d4a373]'
+              : 'nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]'
+          }
         >
           Servicios
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="/faq"
-          className="nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]"
+          className={({ isActive }) =>
+            isActive
+              ? 'border-b-2 border-[#d4a373] text-[#d4a373]'
+              : 'nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]'
+          }
         >
           FAQ
-        </Link>
-        <Link
-          to="/contactanos"
-          className="nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]"
+        </NavLink>
+        <NavLink
+          to="/contacto"
+          className={({ isActive }) =>
+            isActive
+              ? 'border-b-2 border-[#d4a373] text-[#d4a373]'
+              : 'nav-link transition duration-300 ease-in-out hover:border-b-2 border-transparent hover:border-[#d4a373] hover:text-[#d4a373]'
+          }
         >
-          Contáctanos
-        </Link>
+          Contacto
+        </NavLink>
       </div>
 
       {/* Iconos (visibles en pantallas normales) */}
@@ -131,52 +155,76 @@ function Navbar() {
         style={{ backgroundColor: 'white' }}
       >
         <li>
-          <Link
+          <NavLink
             to="/"
-            className="block py-2 px-4 text-gray-800 hover:bg-gray-100"
+            className={({ isActive }) =>
+              isActive
+                ? 'block py-2 px-4 text-[#d4a373]'
+                : 'block py-2 px-4 text-gray-800 hover:bg-gray-100'
+            }
           >
             Inicio
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to="/productos"
-            className="block py-2 px-4 text-gray-800 hover:bg-gray-100"
+            className={({ isActive }) =>
+              isActive
+                ? 'block py-2 px-4 text-[#d4a373]'
+                : 'block py-2 px-4 text-gray-800 hover:bg-gray-100'
+            }
           >
             Productos
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to="/blog"
-            className="block py-2 px-4 text-gray-800 hover:bg-gray-100"
+            className={({ isActive }) =>
+              isActive
+                ? 'block py-2 px-4 text-[#d4a373]'
+                : 'block py-2 px-4 text-gray-800 hover:bg-gray-100'
+            }
           >
             Blog
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to="/servicios"
-            className="block py-2 px-4 text-gray-800 hover:bg-gray-100"
+            className={({ isActive }) =>
+              isActive
+                ? 'block py-2 px-4 text-[#d4a373]'
+                : 'block py-2 px-4 text-gray-800 hover:bg-gray-100'
+            }
           >
             Servicios
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
+          <NavLink
             to="/faq"
-            className="block py-2 px-4 text-gray-800 hover:bg-gray-100"
+            className={({ isActive }) =>
+              isActive
+                ? 'block py-2 px-4 text-[#d4a373]'
+                : 'block py-2 px-4 text-gray-800 hover:bg-gray-100'
+            }
           >
             FAQ
-          </Link>
+          </NavLink>
         </li>
         <li>
-          <Link
-            to="/contactanos"
-            className="block py-2 px-4 text-gray-800 hover:bg-gray-100"
+          <NavLink
+            to="/contacto"
+            className={({ isActive }) =>
+              isActive
+                ? 'block py-2 px-4 text-[#d4a373]'
+                : 'block py-2 px-4 text-gray-800 hover:bg-gray-100'
+            }
           >
-            Contáctanos
-          </Link>
+            Contacto
+          </NavLink>
         </li>
       </ul>
     </nav>
