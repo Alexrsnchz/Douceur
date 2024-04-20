@@ -1,4 +1,5 @@
-import Encuentranos from '../components/contacto/Encuentranos';
+import ContactForm from '../components/contacto/ContactForm';
+import FindUs from '../components/contacto/FindUs';
 import Footer from '../components/otros/Footer';
 import Navbar from '../components/otros/Navbar';
 
@@ -6,7 +7,8 @@ function Contacto() {
   return (
     <>
       <Navbar />
-      <Encuentranos />
+      <FindUs />
+      <ContactForm />
       <Footer />
     </>
   );
