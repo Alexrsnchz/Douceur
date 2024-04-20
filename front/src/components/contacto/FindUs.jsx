@@ -5,6 +5,7 @@ import shop_icon from '../../assets/img_contacto/shop_icon.svg';
 function FindUs() {
   return (
     <>
+      {/* Banner con título y subtítulo */}
       <div className="relative">
         <img
           src={contacto_banner}
@@ -22,7 +23,9 @@ function FindUs() {
           </div>
         </div>
       </div>
+      {/* Contenedor de las tiendas separados en tres columnas */}
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3">
+        {/* Columna / Tienda 1 */}
         <div className="bg-[#FFE4C4] text-[#333333] p-4 flex flex-col items-center justify-center">
           <div className="text-center py-3 lg:py-5">
             <img
@@ -68,6 +71,7 @@ function FindUs() {
             </div>
           </div>
         </div>
+        {/* Columna / Tienda 2 */}
         <div className="bg-[#E8C7A7] text-[#333333] p-4 flex flex-col items-center justify-center">
           <div className="text-center py-3 lg:py-5">
             <img
@@ -113,6 +117,7 @@ function FindUs() {
             </div>
           </div>
         </div>
+        {/* Columna / Tienda 3 */}
         <div className="bg-[#FFDAB9] text-[#333333] p-4 flex flex-col items-center justify-center">
           <div className="text-center py-3 lg:py-5">
             <img
