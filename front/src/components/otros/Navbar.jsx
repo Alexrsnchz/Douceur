@@ -11,12 +11,12 @@ function Navbar() {
   return (
     <nav className="bg-white-50 p-4 flex items-center justify-between relative">
       {/* Logo */}
-      <div className="flex items-center space-x-4 ml-6">
+      <div className="flex items-center space-x-4 sm:ml-1 md:ml-6">
         <img src={navbar_logo} alt="Douceur navbar logo" className="h-10" />
       </div>
 
       {/* Iconos (entre el menú y el logo en móviles y tablets) */}
-      <div className="lg:hidden flex items-center space-x-4">
+      <div className="lg:hidden flex items-center sm:space-x-1 md:space-x-4">
         {/* Iconos */}
         <img
           src={notification_icon}
