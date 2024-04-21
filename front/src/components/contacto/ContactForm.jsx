@@ -24,16 +24,16 @@ function ContactForm() {
               </h2>
             </div>
             <hr className="border-[#333333] my-2 lg:my-3 w-full" />
-            <p className="text-lg text-center mb-6 mt-6 text-gray-700 leading-relaxed">
+            <p className="text-center mb-6 mt-6 text-gray-700 leading-relaxed">
               Si tienes alguna duda sobre los productos que ofrecemos, nuestros
               establecimientos o cualquier otra cosa, puedes enviarnos un correo
               a través de este formulario o llamarnos por teléfono.
             </p>
-            <p className="text-lg text-center mb-6 text-gray-700 leading-relaxed">
+            <p className="text-center mb-6 text-gray-700 leading-relaxed">
               En breve nos pondremos en contacto contigo y responderemos
               cualquier tipo de duda que tengas.
             </p>
-            <p className="text-lg text-center mb-6 text-gray-700 leading-relaxed">
+            <p className="text-center mb-6 text-gray-700 leading-relaxed">
               Adicionalmente, si tienes alguna sugerencia sobre algo que podamos
               mejorar haznoslo saber! Estamos comprometidos con poder brindarte
               la mejor experiencia posible al usar nuestros servicios.
