@@ -13,6 +13,7 @@ import Faq from './views/Faq';
 import Contacto from './views/Contacto';
 import PoliticaPrivacidad from './views/PoliticaPrivacidad';
 import TerminosUso from './views/TerminosUso';
+import BlogPost from './views/BlogPost';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
   {
     path: '/blog',
     element: <Blog />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/blog/:id',
+    element: <BlogPost />,
     errorElement: <ErrorPage />,
   },
   {

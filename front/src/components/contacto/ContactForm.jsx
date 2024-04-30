@@ -14,7 +14,7 @@ function ContactForm() {
     >
       <div className="px-4 md:px-10 py-10 md:py-20">
         <div className="flex flex-col lg:flex-row">
-          <div className="bg-[#E8C7A7] text-[#333333] p-6 lg:w-1/2">
+          <div className="bg-slate-50 text-[#333333] p-6 lg:w-1/2">
             <div>
               <h1 className="text-4xl font-bold text-center mb-4 text-[#333333]">
                 ¿Tienes dudas?
@@ -40,7 +40,7 @@ function ContactForm() {
             </p>
             <hr className="border-[#333333] my-2 lg:my-3 w-full" />
           </div>
-          <div className="bg-[#B09173] text-[#333333] p-6 lg:w-1/2">
+          <div className="backdrop-blur-sm bg-white/70  text-[#333333] p-6 lg:w-1/2">
             <div className="max-w-md mx-auto my-10">
               <Form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 gap-4">
