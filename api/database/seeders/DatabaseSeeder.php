@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
 
         Address::factory(10) -> create();
         User::factory(10) -> create();
-        Post::factory(10) -> create();
+        Post::factory(20) -> create();
         
         $this -> call([
             AllergenSeeder::class,
