@@ -1,68 +1,74 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import './styles/index.css';
-import ErrorPage from './views/ErrorPage';
-import Inicio from './views/Inicio';
-import Productos from './views/Productos';
-import Blog from './views/Blog';
-import Servicios from './views/Servicios';
-import Faq from './views/Faq';
-import Contacto from './views/Contacto';
-import PoliticaPrivacidad from './views/PoliticaPrivacidad';
-import TerminosUso from './views/TerminosUso';
-import BlogPost from './views/BlogPost';
+import { AuthProvider } from '@/context/AuthContext.jsx';
+import './index.css';
+import Register from '@/components/auth/Register.jsx';
+import Login from '@/components/auth/Login.jsx';
+import Home from '@/pages/Home.jsx';
+import ProductView from '@/pages/ProductView.jsx';
+import BlogPostView from '@/pages/Post.jsx';
+import Services from '@/pages/Services.jsx';
+import Faq from '@/pages/Faq.jsx';
+import Contact from '@/pages/Contact.jsx';
+import Administration from '@/pages/Administration.jsx';
+import Privacy from '@/pages/Privacy.jsx';
+import Terms from '@/pages/Terms.jsx';
 
 const router = createBrowserRouter([
   {
+    path: '/registro',
+    element: <Register />,
+  },
+  {
+    path: '/login',
+    element: <Login />,
+  },
+  {
     path: '/',
-    element: <Inicio />,
-    errorElement: <ErrorPage />,
+    element: <Home />,
   },
   {
     path: '/productos',
-    element: <Productos />,
-    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/product',
+    element: <ProductView />,
   },
   {
     path: '/blog',
-    element: <Blog />,
-    errorElement: <ErrorPage />,
   },
   {
-    path: '/blog/:id',
-    element: <BlogPost />,
-    errorElement: <ErrorPage />,
+    path: '/post',
+    element: <BlogPostView />,
   },
   {
     path: '/servicios',
-    element: <Servicios />,
-    errorElement: <ErrorPage />,
+    element: <Services />,
   },
   {
     path: '/faq',
     element: <Faq />,
-    errorElement: <ErrorPage />,
   },
   {
     path: '/contacto',
-    element: <Contacto />,
-    errorElement: <ErrorPage />,
+    element: <Contact />,
   },
   {
-    path: '/politica-privacidad',
-    element: <PoliticaPrivacidad />,
-    errorElement: <ErrorPage />,
+    path: '/privacidad',
+    element: <Privacy />,
   },
   {
-    path: '/terminos-uso',
-    element: <TerminosUso />,
-    errorElement: <ErrorPage />,
+    path: '/terminos',
+    element: <Terms />,
+  },
+  {
+    path: '/administracion',
+    element: <Administration />,
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <RouterProvider router={router} />
+  <AuthProvider>
+    <RouterProvider router={router} />
+  </AuthProvider>,
 );

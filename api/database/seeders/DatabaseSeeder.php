@@ -2,10 +2,14 @@
 
 namespace Database\Seeders;
 
-use App\Models\Address;
-use App\Models\Post;
-use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Users\Address;
+use App\Models\Users\Post;
+use App\Models\Users\User;
+use Database\Seeders\Products\AllergenSeeder;
+use Database\Seeders\Products\CategorySeeder;
+use Database\Seeders\Products\ProductSeeder;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,23 +20,35 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        //Storage::deleteDirectory('allergens');
-        //Storage::makeDirectory('allergens');
+        // Crea el usuario por defecto que usará el propietario
+        // de la tienda.
+        User::create([
+            'username' => 'Douceur',
+            'email' => 'douceur@gmail.com',
+            'password' => 'password',
+            'isAdmin' => true,
+            'address' => null,
+        ]);
 
-        Storage::deleteDirectory('products');
-        Storage::makeDirectory('products');
+        // Llama al factory de User.
+        User::factory(14) -> create();
 
+        // Elimina y vuelve a crear el directorio posts.
         Storage::deleteDirectory('posts');
-        Storage::makeDirectory('posts');
+        Storage::createDirectory('posts');
 
-        Address::factory(10) -> create();
-        User::factory(10) -> create();
-        Post::factory(20) -> create();
-        
+        // Llama al factory de Post.
+        Post::factory(40) -> create();
+
+        // Elimina y vuelve a crear el directorio products.
+        Storage::deleteDirectory('products');
+        Storage::createDirectory('products');
+
+        // Llama a los seeders.
         $this -> call([
             AllergenSeeder::class,
             CategorySeeder::class,
-            ProductSeeder::class
+            ProductSeeder::class,
         ]);
     }
 }
