@@ -20,7 +20,7 @@ function Faq() {
   return (
     <>
       <Navbar />
-      <div className="bg-[#d4a373] py-10">
+      <div className="bg-[#f1e5d1] py-10">
         <div className="container bg-white mx-auto rounded-2xl shadow-xl px-5 py-10">
           <section className="px-3">
             <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">

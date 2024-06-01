@@ -5,7 +5,7 @@ function Terms() {
   return (
     <>
       <Navbar />
-      <div className="bg-[#d4a373] py-10">
+      <div className="bg-[#f1e5d1] py-10">
         <div className="container mx-auto rounded-lg shadow-2xl p-6 bg-white text-gray-800">
           <h1 className="text-3xl font-bold mb-4">
             Términos de Uso del Sitio Web

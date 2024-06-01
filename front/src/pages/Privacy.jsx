@@ -5,7 +5,7 @@ function Privacy() {
   return (
     <>
       <Navbar />
-      <div className="bg-[#d4a373] py-10">
+      <div className="bg-[#f1e5d1] py-10">
         <div className="container bg-white p-8 rounded-2xl shadow-lg">
           <h1 className="text-3xl font-bold mb-4">Política de Privacidad</h1>
           <p className="text-gray-600 mb-4">
