@@ -27,7 +27,7 @@ class UpdateUserRequest extends FormRequest
             'username' => 'required|string|min:5|unique:users,username,'.$this -> id,
             'email' => 'required|email|unique:users,email,'.$this -> id,
             'isAdmin' => 'required|boolean',
-            'address' => 'required|string|min:5'
+            'address' => 'nullable|string|min:5'
         ];
     }
 

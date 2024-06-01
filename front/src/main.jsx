@@ -13,6 +13,8 @@ import Contact from '@/pages/Contact.jsx';
 import Administration from '@/pages/Administration.jsx';
 import Privacy from '@/pages/Privacy.jsx';
 import Terms from '@/pages/Terms.jsx';
+import Blog from '@/pages/Blog.jsx';
+import Post from '@/pages/Post.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,10 +38,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/blog',
+    element: <Blog />,
   },
   {
-    path: '/post',
-    element: <BlogPostView />,
+    path: '/blog/:id',
+    element: <Post />,
   },
   {
     path: '/servicios',

@@ -84,7 +84,7 @@ const ProductsTable = () => {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto py-10">
       <div className="flex flex-row-reverse mb-4">
         <button
           //onClick={() => setShowCreateModal(true)}

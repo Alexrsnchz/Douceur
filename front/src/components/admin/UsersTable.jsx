@@ -6,30 +6,8 @@ import admin_add_icon from '@/assets/images/admin/admin_add_icon.svg';
 import admin_edit_icon from '@/assets/images/admin/admin_edit_icon.svg';
 import admin_delete_icon from '@/assets/images/admin/admin_delete_icon.svg';
 
-const DeleteUserModal = ({ onConfirm, onCancel }) => (
-  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-      <h2 className="text-xl text-center font-semibold mb-4">
-        Confirmar eliminación
-      </h2>
-      <p className="mb-4">¿Estás seguro de que deseas eliminar este usuario?</p>
-      <div className="flex justify-center space-x-5">
-        <button
-          onClick={onConfirm}
-          className="px-4 py-1.5 bg-red-500 hover:bg-red-700 font-semibold text-white rounded-md"
-        >
-          Eliminar
-        </button>
-        <button
-          onClick={onCancel}
-          className="px-4 py-1.5 bg-gray-300 hover:bg-gray-400 font-semibold text-black hover:text-white rounded-md"
-        >
-          Cancelar
-        </button>
-      </div>
-    </div>
-  </div>
-);
+import DeleteUserModal from './modals/DeleteUserModal';
+import AddUserModal from './modals/AddUserModal';
 
 const UsersTable = () => {
   const apiUrl = import.meta.env.VITE_REACT_APP_DOUCEUR_API;
@@ -37,6 +15,7 @@ const UsersTable = () => {
 
   const [users, setUsers] = useState([]);
   const [userToDelete, setUserToDelete] = useState(null);
+  const [showCreateModal, setShowCreateModal] = useState(false);
 
   const handleLoadUsers = async () => {
     try {
@@ -50,6 +29,7 @@ const UsersTable = () => {
   const confirmedDeletedUser = (id) => {
     setUserToDelete(id);
   };
+
   const handleDeleteUser = async () => {
     try {
       await axios.delete(`${apiUrl}/users/${userToDelete}`);
@@ -76,15 +56,27 @@ const UsersTable = () => {
     }
   };
 
+  const handleUserAdded = () => {
+    handleLoadUsers();
+    toast({
+      title: 'Listo!',
+      description: 'Se ha añadido el usuario.',
+      status: 'success',
+      duration: 2000,
+      className:
+        'bg-[#CA8787] text-white font-semibold border-2 border-[#A87676]',
+    });
+  };
+
   useEffect(() => {
     handleLoadUsers();
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto py-10">
       <div className="flex flex-row-reverse mb-4">
         <button
-          //onClick={() => setShowCreateModal(true)}
+          onClick={() => setShowCreateModal(true)}
           className="px-4 py-1 bg-[#C39898] hover:bg-[#A67C7C] border-2 border-[#A87676] font-semibold text-white rounded-md"
         >
           <div className="flex items-center gap-1">
@@ -158,6 +150,12 @@ const UsersTable = () => {
         <DeleteUserModal
           onConfirm={handleDeleteUser}
           onCancel={() => setUserToDelete(null)}
+        />
+      )}
+      {showCreateModal && (
+        <AddUserModal
+          onClose={() => setShowCreateModal(false)}
+          onUserAdded={handleUserAdded}
         />
       )}
     </div>
