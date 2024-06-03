@@ -120,10 +120,7 @@ const UsersTable = () => {
               <td className="py-1.5 px-4">{user.address}</td>
               <td className="py-1.5 px-4">
                 <div className="flex space-x-2 justify-center">
-                  <button
-                    //onClick={() => handleEdit(user)}
-                    className="bg-[#BCA78B] hover:bg-[#9E896D] border-2 border-[#a79277] rounded-md p-1.5"
-                  >
+                  <button className="bg-[#BCA78B] hover:bg-[#9E896D] border-2 border-[#a79277] rounded-md p-1.5">
                     <img
                       src={admin_edit_icon}
                       alt="Icono de editar"

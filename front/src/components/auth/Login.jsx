@@ -14,7 +14,7 @@ function Login() {
   });
   const [error, setError] = useState({});
   const [backendError, setBackendError] = useState('');
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth, setIsLoggedIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -56,6 +56,7 @@ function Login() {
         const { token, data: user } = response.data;
         localStorage.setItem('token', token);
         setAuth({ token, user });
+        setIsLoggedIn(true);
 
         navigate('/');
       } catch (error) {

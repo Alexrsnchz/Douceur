@@ -78,24 +78,6 @@ class AuthController extends Controller
     }
 
     /**
-     * Refreshes the user access token and sends a message,
-     * a status and the new token with a expiration date
-     * in JSON format.
-     */
-    public function refreshToken()
-    {
-        $token = JWTAuth::refresh();
-        $expires_in = auth('api') -> factory() -> getTTL() * 60;
-
-        return response() -> json([
-            'message' => 'Token reestablecido correctamente',
-            'status' => true,
-            'token' => $token,
-            'expires_in' => $expires_in
-        ]);
-    }
-
-    /**
      * Logs out a user by rescinding it's access token and
      * returns a message with a status in JSON format.
      */

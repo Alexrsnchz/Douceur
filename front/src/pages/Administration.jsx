@@ -7,6 +7,7 @@ import AllergensTable from '@/components/admin/AllergensTable.jsx';
 import CategoriesTable from '@/components/admin/CategoriesTable.jsx';
 import PostsTable from '@/components/admin/PostsTable.jsx';
 import UsersTable from '@/components/admin/UsersTable.jsx';
+import UsersGrid from '@/components/admin/UsersGrid.jsx';
 
 function Administration() {
   return (
@@ -58,7 +59,7 @@ function Administration() {
           <PostsTable />
         </TabsContent>
         <TabsContent value="users">
-          <UsersTable />
+          <UsersGrid />
         </TabsContent>
         <Toaster />
       </Tabs>

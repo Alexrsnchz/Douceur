@@ -25,7 +25,15 @@ class ProductResource extends JsonResource
             'catName' => $this -> category -> catName,
             'catColor' => $this -> category -> catColor,
             'catIcon' => asset(Storage::url($this -> category -> catIcon)),
-            'likes' => $this -> usersLike -> count(),
+            'allergens' => $this -> allergens -> map(function ($allergen) {
+                return [
+                    'id' => $allergen -> id,
+                    'name' => $allergen -> alrgnName,
+                    'color' => $allergen -> alrgnColor,
+                    'icon' => asset(Storage::url($allergen -> alrgnIcon)),
+                ];
+            }),
+            'likes' => $this -> usersLike-> count(),
         ];
     }
 }

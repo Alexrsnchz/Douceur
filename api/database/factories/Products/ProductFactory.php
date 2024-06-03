@@ -21,7 +21,7 @@ class ProductFactory extends Factory
 
         return [
             'prodName' => fake() -> unique() -> words(random_int(1, 2), true),
-            'description' => fake() -> text(100),
+            'description' => fake() -> text(300),
             'price' => fake() -> randomFloat(2, 10, 30),
             'availability' => fake() -> randomElement(['Disponible', 'Agotado']),
             'prodImg' => 'products/'.fake() -> picsum('public/storage/products', 640, 480, false),

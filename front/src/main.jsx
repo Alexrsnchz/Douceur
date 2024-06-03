@@ -1,11 +1,12 @@
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { AuthProvider } from '@/context/AuthContext.jsx';
+import { CartProvider } from '@/context/CartContext.jsx'; // Asegúrate de que esta línea esté correcta
 import './index.css';
 import Register from '@/components/auth/Register.jsx';
 import Login from '@/components/auth/Login.jsx';
 import Home from '@/pages/Home.jsx';
-import ProductView from '@/pages/ProductView.jsx';
+import ProductView from '@/pages/Product.jsx';
 import BlogPostView from '@/pages/Post.jsx';
 import Services from '@/pages/Services.jsx';
 import Faq from '@/pages/Faq.jsx';
@@ -15,6 +16,8 @@ import Privacy from '@/pages/Privacy.jsx';
 import Terms from '@/pages/Terms.jsx';
 import Blog from '@/pages/Blog.jsx';
 import Post from '@/pages/Post.jsx';
+import Products from '@/pages/Products.jsx';
+import Product from '@/pages/Product.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,10 +34,11 @@ const router = createBrowserRouter([
   },
   {
     path: '/productos',
+    element: <Products />,
   },
   {
-    path: '/product',
-    element: <ProductView />,
+    path: '/productos/:id',
+    element: <Product />,
   },
   {
     path: '/blog',
@@ -72,6 +76,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <AuthProvider>
-    <RouterProvider router={router} />
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
   </AuthProvider>,
 );

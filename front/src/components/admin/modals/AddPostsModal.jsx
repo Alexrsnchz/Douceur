@@ -2,17 +2,16 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useToast } from '@/components/ui/use-toast.js';
 
-const AddUserModal = ({ onClose, onUserAdded }) => {
+const AddPostModal = ({ onClose, onPostAdded }) => {
   const apiUrl = import.meta.env.VITE_REACT_APP_DOUCEUR_API;
   const { toast } = useToast();
 
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-    address: '',
-    isAdmin: false,
+    title: '',
+    content: '',
+    state: 'Borrador', // Predeterminado a 'Borrador'
+    postImg: '',
+    user_id: '',
   });
 
   const [errors, setErrors] = useState({});
@@ -25,11 +24,6 @@ const AddUserModal = ({ onClose, onUserAdded }) => {
     });
   };
 
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -37,22 +31,16 @@ const AddUserModal = ({ onClose, onUserAdded }) => {
 
     const newErrors = {};
 
-    if (!formData.username) {
-      newErrors.username = 'El nombre de usuario es obligatorio.';
+    if (!formData.title) {
+      newErrors.title = 'El título es obligatorio.';
     }
 
-    if (!formData.email) {
-      newErrors.email = 'El correo electrónico es obligatorio.';
-    } else if (!validateEmail(formData.email)) {
-      newErrors.email = 'El correo electrónico no es válido.';
+    if (!formData.content) {
+      newErrors.content = 'El contenido es obligatorio.';
     }
 
-    if (!formData.password) {
-      newErrors.password = 'La contraseña es obligatoria.';
-    }
-
-    if (formData.password !== formData.password_confirmation) {
-      newErrors.password_confirmation = 'Las contraseñas no coinciden.';
+    if (!formData.user_id) {
+      newErrors.user_id = 'El ID del usuario es obligatorio.';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -61,17 +49,17 @@ const AddUserModal = ({ onClose, onUserAdded }) => {
     }
 
     try {
-      const response = await axios.post(`${apiUrl}/users`, formData);
+      const response = await axios.post(`${apiUrl}/posts`, formData);
       if (response.data.status !== false) {
         toast({
           title: 'Listo!',
-          description: 'Se ha añadido el usuario.',
+          description: 'Se ha añadido el post.',
           status: 'success',
           duration: 2000,
           className:
             'bg-[#CA8787] text-white font-semibold border-2 border-[#A87676]',
         });
-        onUserAdded();
+        onPostAdded();
         onClose();
       } else {
         setErrors(response.data.data);
@@ -80,7 +68,7 @@ const AddUserModal = ({ onClose, onUserAdded }) => {
       if (error.response && error.response.data && error.response.data.data) {
         setErrors(error.response.data.data);
       } else {
-        setErrors({ general: 'Error al añadir el usuario.' });
+        setErrors({ general: 'Error al añadir el post.' });
       }
     }
   };
@@ -88,90 +76,79 @@ const AddUserModal = ({ onClose, onUserAdded }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-xl font-semibold mb-4">Añadir usuario</h2>
+        <h2 className="text-xl font-semibold mb-4">Añadir post</h2>
         <form onSubmit={handleSubmit} noValidate>
           <div className="mb-4">
-            <label className="block mb-1 font-semibold">Username</label>
+            <label className="block mb-1 font-semibold">Título</label>
             <input
               type="text"
-              name="username"
-              value={formData.username}
+              name="title"
+              value={formData.title}
               onChange={handleChange}
               className="w-full p-2 border rounded-md"
               required
             />
-            {errors.username && (
-              <p className="text-red-500 text-sm">{errors.username}</p>
+            {errors.title && (
+              <p className="text-red-500 text-sm">{errors.title}</p>
             )}
           </div>
           <div className="mb-4">
-            <label className="block mb-1 font-semibold">Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
+            <label className="block mb-1 font-semibold">Contenido</label>
+            <textarea
+              name="content"
+              value={formData.content}
               onChange={handleChange}
               className="w-full p-2 border rounded-md"
               required
-            />
-            {errors.email && (
-              <p className="text-red-500 text-sm">{errors.email}</p>
+            ></textarea>
+            {errors.content && (
+              <p className="text-red-500 text-sm">{errors.content}</p>
             )}
           </div>
           <div className="mb-4">
-            <label className="block mb-1 font-semibold">Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
+            <label className="block mb-1 font-semibold">Estado</label>
+            <select
+              name="state"
+              value={formData.state}
               onChange={handleChange}
               className="w-full p-2 border rounded-md"
               required
-            />
-            {errors.password && (
-              <p className="text-red-500 text-sm">{errors.password}</p>
-            )}
-          </div>
-          <div className="mb-4">
-            <label className="block mb-1 font-semibold">Confirm Password</label>
-            <input
-              type="password"
-              name="password_confirmation"
-              value={formData.password_confirmation}
-              onChange={handleChange}
-              className="w-full p-2 border rounded-md"
-              required
-            />
-            {errors.password_confirmation && (
-              <p className="text-red-500 text-sm">
-                {errors.password_confirmation}
-              </p>
+            >
+              <option value="Publicado">Publicado</option>
+              <option value="Borrador">Borrador</option>
+            </select>
+            {errors.state && (
+              <p className="text-red-500 text-sm">{errors.state}</p>
             )}
           </div>
           <div className="mb-4">
             <label className="block mb-1 font-semibold">
-              Address (opcional)
+              Imagen del post (URL)
             </label>
             <input
               type="text"
-              name="address"
-              value={formData.address}
+              name="postImg"
+              value={formData.postImg}
               onChange={handleChange}
               className="w-full p-2 border rounded-md"
             />
-            {errors.address && (
-              <p className="text-red-500 text-sm">{errors.address}</p>
+            {errors.postImg && (
+              <p className="text-red-500 text-sm">{errors.postImg}</p>
             )}
           </div>
-          <div className="mb-4 flex items-center">
+          <div className="mb-4">
+            <label className="block mb-1 font-semibold">ID del usuario</label>
             <input
-              type="checkbox"
-              name="isAdmin"
-              checked={formData.isAdmin}
+              type="text"
+              name="user_id"
+              value={formData.user_id}
               onChange={handleChange}
-              className="mr-2"
+              className="w-full p-2 border rounded-md"
+              required
             />
-            <label className="font-semibold">Admin</label>
+            {errors.user_id && (
+              <p className="text-red-500 text-sm">{errors.user_id}</p>
+            )}
           </div>
           {errors.general && (
             <p className="text-red-500 text-sm">{errors.general}</p>
@@ -197,4 +174,4 @@ const AddUserModal = ({ onClose, onUserAdded }) => {
   );
 };
 
-export default AddUserModal;
+export default AddPostModal;

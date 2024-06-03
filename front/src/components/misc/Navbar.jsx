@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import AuthContext from '@/context/AuthContext.jsx';
+import { CartContext } from '@/context/CartContext';
+import CartDropdown from '@/components/misc/CartDropdown.jsx';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,13 +13,18 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 import navbar_logo from '../../assets/images/logos/navbar_logo.png';
-import notification_icon from '../../assets/images/navbar/notification_icon.svg';
 import user_icon from '../../assets/images/navbar/user_icon.svg';
 import cart_icon from '../../assets/images/navbar/cart_icon.svg';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Simulación de autenticación
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { cart } = useContext(CartContext);
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
 
   return (
     <nav className="bg-white-50 p-4 flex items-center justify-between relative">
@@ -25,11 +33,6 @@ function Navbar() {
       </div>
 
       <div className="lg:hidden flex items-center sm:space-x-1 md:space-x-4">
-        <img
-          src={notification_icon}
-          alt="Icono de notificación"
-          className="h-6 cursor-pointer"
-        />
         <DropdownMenu>
           <DropdownMenuTrigger>
             <img
@@ -55,18 +58,27 @@ function Navbar() {
                 <DropdownMenuItem as={NavLink} to="/profile">
                   Perfil
                 </DropdownMenuItem>
-                <DropdownMenuItem as={NavLink} to="/logout">
+                <DropdownMenuItem onClick={logout} className="cursor-pointer">
                   Cerrar sesión
                 </DropdownMenuItem>
               </>
             )}
           </DropdownMenuContent>
         </DropdownMenu>
-        <img
-          src={cart_icon}
-          alt="Icono de carrito de compra"
-          className="h-6 cursor-pointer"
-        />
+        <div className="relative">
+          <img
+            src={cart_icon}
+            alt="Icono de carrito de compra"
+            className="h-6 cursor-pointer"
+            onClick={toggleCart}
+          />
+          {cart.length > 0 && (
+            <span className="absolute top-2 right-2 inline-block w-6 h-6 bg-pink-400 text-white text-xs font-bold text-center rounded-full">
+              {cart.length}
+            </span>
+          )}
+          {isCartOpen && <CartDropdown />}
+        </div>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="mobile-menu-button"
@@ -160,11 +172,6 @@ function Navbar() {
       </div>
 
       <div className="hidden lg:flex items-center space-x-4 mr-6">
-        <img
-          src={notification_icon}
-          alt="Icono de notificación"
-          className="h-6 cursor-pointer"
-        />
         <DropdownMenu>
           <DropdownMenuTrigger>
             <img
@@ -194,18 +201,27 @@ function Navbar() {
                 <DropdownMenuItem>
                   <Link to="/perfil">Perfil</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link to="/logout">Cerrar sesión</Link>
+                <DropdownMenuItem onClick={logout} className="cursor-pointer">
+                  Cerrar sesión
                 </DropdownMenuItem>
               </>
             )}
           </DropdownMenuContent>
         </DropdownMenu>
-        <img
-          src={cart_icon}
-          alt="Icono de carrito de compra"
-          className="h-6 cursor-pointer"
-        />
+        <div className="relative">
+          <img
+            src={cart_icon}
+            alt="Icono de carrito de compra"
+            className="h-6 cursor-pointer"
+            onClick={toggleCart}
+          />
+          {cart.length > 0 && (
+            <span className="absolute bottom-3 left-3.5 inline-block w-4 h-4 bg-pink-400 text-white text-xs font-bold text-center rounded-full">
+              {cart.length}
+            </span>
+          )}
+          {isCartOpen && <CartDropdown />}
+        </div>
       </div>
       <ul
         className={`absolute top-full right-0 bg-white p-4 lg:hidden ${
